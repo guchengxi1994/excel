@@ -1,10 +1,12 @@
+// ignore_for_file: prefer_constructors_over_static_methods, always_declare_return_types, type_annotate_public_apis
+
 part of excel;
 
 class Formula {
   late String _formula;
 
   Formula._(String formula) {
-    this._formula = formula;
+    _formula = formula;
   }
 
   /// Helps to initiate a custom formula
@@ -17,11 +19,11 @@ class Formula {
 
   /// get Formula
   get formula {
-    return this._formula;
+    return _formula;
   }
 
   @override
   String toString() {
-    return this._formula;
+    return _formula;
   }
 }

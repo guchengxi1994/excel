@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_multiple_declarations_per_line, unnecessary_getters_setters
+
 part of excel;
 
 /// Styling class for cells
@@ -9,13 +11,14 @@ class _FontStyle extends Equatable {
   Underline _underline = Underline.None;
   int? _fontSize;
 
-  _FontStyle(
-      {String? fontColorHex = 'FF000000',
-      int? fontSize,
-      String? fontFamily,
-      bool bold = false,
-      Underline underline = Underline.None,
-      bool italic = false}) {
+  _FontStyle({
+    String? fontColorHex = 'FF000000',
+    int? fontSize,
+    String? fontFamily,
+    bool bold = false,
+    Underline underline = Underline.None,
+    bool italic = false,
+  }) {
     _bold = bold;
 
     _fontSize = fontSize;

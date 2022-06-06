@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_constructors_over_static_methods
+
 part of excel;
 
 // ignore: must_be_immutable
@@ -80,7 +82,9 @@ class Data extends Equatable {
   /// returns the string based cellId as A1, A2 or Z5
   CellIndex get cellIndex {
     return CellIndex.indexByColumnRow(
-        columnIndex: _colIndex, rowIndex: _rowIndex);
+      columnIndex: _colIndex,
+      rowIndex: _rowIndex,
+    );
   }
 
   /// Helps to set the formula
@@ -100,7 +104,7 @@ class Data extends Equatable {
   /// returns the value stored in this cell;
   ///
   /// It will return `null` if no value is stored in this cell.
-  get value {
+  dynamic get value {
     return _value;
   }
 

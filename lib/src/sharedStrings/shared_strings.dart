@@ -1,3 +1,5 @@
+// ignore_for_file: sort_unnamed_constructors_first
+
 part of excel;
 
 class _SharedStringsMaintainer {
@@ -52,10 +54,10 @@ class _IndexingHolder {
   final int index;
   late int count;
   _IndexingHolder(this.index, [int _count = 1]) {
-    this.count = _count;
+    count = _count;
   }
 
   void increaseCount() {
-    this.count += 1;
+    count += 1;
   }
 }

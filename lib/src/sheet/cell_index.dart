@@ -1,11 +1,14 @@
+// ignore_for_file: prefer_constructors_over_static_methods
+
 part of excel;
 
 // ignore: must_be_immutable
 class CellIndex extends Equatable {
   CellIndex._({int? col, int? row}) {
+    // ignore: prefer_asserts_in_initializer_lists
     assert(col != null && row != null);
-    this._columnIndex = col!;
-    this._rowIndex = row!;
+    _columnIndex = col!;
+    _rowIndex = row!;
   }
 
   ///
@@ -15,7 +18,7 @@ class CellIndex extends Equatable {
   ///```
   static CellIndex indexByColumnRow({int? columnIndex, int? rowIndex}) {
     assert(columnIndex != null && rowIndex != null);
-    return CellIndex._(col: columnIndex!, row: rowIndex!);
+    return CellIndex._(col: columnIndex, row: rowIndex);
   }
 
   ///
@@ -24,7 +27,7 @@ class CellIndex extends Equatable {
   /// CellIndex.indexByColumnRow('A2'); // columnIndex: 0, rowIndex: 1
   ///```
   static CellIndex indexByString(String cellIndex) {
-    List<int> li = _cellCoordsFromCellId(cellIndex);
+    final List<int> li = _cellCoordsFromCellId(cellIndex);
     return CellIndex._(row: li[0], col: li[1]);
   }
 
@@ -34,19 +37,19 @@ class CellIndex extends Equatable {
   /// var cellIndex = CellIndex.indexByColumnRow(columnIndex: 0, rowIndex: 0 );
   /// var cell = cellIndex.cellId; // A1
   String get cellId {
-    return getCellId(this.columnIndex, this.rowIndex);
+    return getCellId(columnIndex, rowIndex);
   }
 
   late int _rowIndex;
 
   int get rowIndex {
-    return this._rowIndex;
+    return _rowIndex;
   }
 
   late int _columnIndex;
 
   int get columnIndex {
-    return this._columnIndex;
+    return _columnIndex;
   }
 
   @override

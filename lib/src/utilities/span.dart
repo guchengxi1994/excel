@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_setters_without_getters
+
 part of excel;
 
 // For Spanning the columns and rows
