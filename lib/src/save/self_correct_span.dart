@@ -1,8 +1,10 @@
+// ignore_for_file: always_declare_return_types, prefer_final_locals, avoid_multiple_declarations_per_line
+
 part of excel;
 
 ///Self correct the spanning of rows and columns by checking their cross-sectional relationship between if exists.
 _selfCorrectSpanMap(Excel _excel) {
-  _excel._mergeChangeLook.forEach((String key) {
+  for (final key in _excel._mergeChangeLook) {
     if (_excel._sheetMap[key] != null &&
         _excel._sheetMap[key]!._spanList.isNotEmpty) {
       List<_Span?> spanList =
@@ -25,10 +27,15 @@ _selfCorrectSpanMap(Excel _excel) {
           }
 
           List locationChange = _isLocationChangeRequired(
-              startColumn, startRow, endColumn, endRow, spanObj);
-          List<int> gotPosition = locationChange[1];
+            startColumn,
+            startRow,
+            endColumn,
+            endRow,
+            spanObj,
+          );
+          List<int> gotPosition = locationChange[1] as List<int>;
 
-          if (locationChange[0]) {
+          if (locationChange[0] as bool) {
             startColumn = gotPosition[0];
             startRow = gotPosition[1];
             endColumn = gotPosition[2];
@@ -36,14 +43,15 @@ _selfCorrectSpanMap(Excel _excel) {
             spanList[j] = null;
           } else {
             List locationChange2 = _isLocationChangeRequired(
-                spanObj.columnSpanStart,
-                spanObj.rowSpanStart,
-                spanObj.columnSpanEnd,
-                spanObj.rowSpanEnd,
-                checkerPos);
-            List<int> gotPosition2 = locationChange2[1];
+              spanObj.columnSpanStart,
+              spanObj.rowSpanStart,
+              spanObj.columnSpanEnd,
+              spanObj.rowSpanEnd,
+              checkerPos,
+            );
+            List<int> gotPosition2 = locationChange2[1] as List<int>;
 
-            if (locationChange2[0]) {
+            if (locationChange2[0] as bool) {
               startColumn = gotPosition2[0];
               startRow = gotPosition2[1];
               endColumn = gotPosition2[2];
@@ -60,5 +68,5 @@ _selfCorrectSpanMap(Excel _excel) {
       _excel._sheetMap[key]!._spanList = List<_Span?>.from(spanList);
       _excel._sheetMap[key]!._cleanUpSpanMap();
     }
-  });
+  }
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: parameter_assignments, avoid_multiple_declarations_per_line, avoid_unused_constructor_parameters, unnecessary_getters_setters
+
 part of excel;
 
 /// Styling class for cells
@@ -61,17 +63,17 @@ class CellStyle extends Equatable {
     int? rotationVal,
   }) {
     return CellStyle(
-      fontColorHex: fontColorHexVal ?? this._fontColorHex,
-      backgroundColorHex: backgroundColorHexVal ?? this._backgroundColorHex,
-      fontFamily: fontFamilyVal ?? this._fontFamily,
-      horizontalAlign: horizontalAlignVal ?? this._horizontalAlign,
-      verticalAlign: verticalAlignVal ?? this._verticalAlign,
-      textWrapping: textWrappingVal ?? this._textWrapping,
-      bold: boldVal ?? this._bold,
-      italic: italicVal ?? this._italic,
-      underline: underlineVal ?? this._underline,
-      fontSize: fontSizeVal ?? this._fontSize,
-      rotation: rotationVal ?? this._rotation,
+      fontColorHex: fontColorHexVal ?? _fontColorHex,
+      backgroundColorHex: backgroundColorHexVal ?? _backgroundColorHex,
+      fontFamily: fontFamilyVal ?? _fontFamily,
+      horizontalAlign: horizontalAlignVal ?? _horizontalAlign,
+      verticalAlign: verticalAlignVal ?? _verticalAlign,
+      textWrapping: textWrappingVal ?? _textWrapping,
+      bold: boldVal ?? _bold,
+      italic: italicVal ?? _italic,
+      underline: underlineVal ?? _underline,
+      fontSize: fontSizeVal ?? _fontSize,
+      rotation: rotationVal ?? _rotation,
     );
   }
 
@@ -175,7 +177,7 @@ class CellStyle extends Equatable {
       /// The value is from 0 to -90 so now make it absolute and add it to 90
       ///
       /// -(_rotate) + 90
-      _rotate = -(_rotate) + 90;
+      _rotate = -_rotate + 90;
     }
     _rotation = _rotate;
   }

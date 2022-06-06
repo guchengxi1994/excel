@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages, avoid_relative_lib_imports
+
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
@@ -6,7 +8,7 @@ import 'package:path/path.dart';
 import '../lib/excel.dart';
 
 void main(List<String> args) {
-  var excel = Excel.createExcel();
+  final excel = Excel.createExcel();
   final Sheet sheet = excel[excel.getDefaultSheet()!];
 
   for (var row = 0; row < 100; row++) {
@@ -42,13 +44,15 @@ void main(List<String> args) {
   sheet.setColAutoFit(2);
   sheet.setColWidth(50, 10.0);
 
-  sheet.merge(CellIndex.indexByColumnRow(columnIndex: 0, rowIndex: 0),
-      CellIndex.indexByColumnRow(columnIndex: 1, rowIndex: 10));
+  sheet.merge(
+    CellIndex.indexByColumnRow(columnIndex: 0, rowIndex: 0),
+    CellIndex.indexByColumnRow(columnIndex: 1, rowIndex: 10),
+  );
 
-  String outputFile =
+  final String outputFile =
       "/Users/igdmit/Downloads/excel_custom-${DateTime.now().toIso8601String()}.xlsx";
 
-  List<int>? fileBytes = excel.save();
+  final List<int>? fileBytes = excel.save();
   if (fileBytes != null) {
     File(join(outputFile))
       ..createSync(recursive: true)

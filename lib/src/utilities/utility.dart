@@ -1,3 +1,5 @@
+// ignore_for_file: parameter_assignments, unnecessary_raw_strings, avoid_multiple_declarations_per_line
+
 part of excel;
 
 List<String> _noCompression = <String>['mimetype', 'Thumbnails/thumbnail.png'];
@@ -21,7 +23,7 @@ String _isColorAppropriate(String value) {
 int lettersToNumeric(String letters) {
   var sum = 0, mul = 1, n = 1;
   for (var index = letters.length - 1; index >= 0; index--) {
-    var c = letters[index].codeUnitAt(0);
+    final c = letters[index].codeUnitAt(0);
     n = 1;
     if (65 <= c && c <= 90) {
       n += c - 65;
@@ -43,7 +45,7 @@ Iterable<XmlElement> _findCells(XmlElement row) {
 }
 
 int? _getCellNumber(XmlElement cell) {
-  var r = cell.getAttribute('r');
+  final r = cell.getAttribute('r');
   if (r == null) {
     return null;
   }
@@ -87,7 +89,7 @@ String _numericToLetters(int number) {
     }
 
     // Convert the remainder to a character.
-    var letter = String.fromCharCode(65 + remainder - 1);
+    final letter = String.fromCharCode(65 + remainder - 1);
 
     // Accumulate the column letters, right to left.
     letters = letter + letters;
@@ -112,11 +114,13 @@ String _normalizeNewLine(String text) {
 ///It is useful to convert CellId to Indexing.
 ///
 List<int> _cellCoordsFromCellId(String cellId) {
-  var letters = cellId.runes.map(_letterOnly);
-  var lettersPart = utf8.decode(letters.where((rune) {
-    return rune > 0;
-  }).toList(growable: false));
-  var numericsPart = cellId.substring(lettersPart.length);
+  final letters = cellId.runes.map(_letterOnly);
+  final lettersPart = utf8.decode(
+    letters.where((rune) {
+      return rune > 0;
+    }).toList(growable: false),
+  );
+  final numericsPart = cellId.substring(lettersPart.length);
 
   return [
     int.parse(numericsPart) - 1,
@@ -143,8 +147,13 @@ String getSpanCellId(int startColumn, int startRow, int endColumn, int endRow) {
 ///returns updated SpanObject location as there might be cross-sectional interaction between the two spanning objects.
 ///
 List _isLocationChangeRequired(
-    int startColumn, int startRow, int endColumn, int endRow, _Span spanObj) {
-  bool changeValue = (
+  int startColumn,
+  int startRow,
+  int endColumn,
+  int endRow,
+  _Span spanObj,
+) {
+  final bool changeValue = (
           // Overlapping checker
           startRow <= spanObj.rowSpanStart &&
               startColumn <= spanObj.columnSpanStart &&
@@ -207,7 +216,7 @@ List _isLocationChangeRequired(
 ///     `getColumnAlphabet(5); // returns F`
 ///
 String getColumnAlphabet(int collIndex) {
-  return '${_numericToLetters(collIndex + 1)}';
+  return _numericToLetters(collIndex + 1);
 }
 
 ///
@@ -217,7 +226,7 @@ String getColumnAlphabet(int collIndex) {
 ///    `getColumnAlphabet("F"); // returns 5`
 ///
 int getColumnIndex(String columnAlphabet) {
-  return _cellCoordsFromCellId('${columnAlphabet}')[1];
+  return _cellCoordsFromCellId(columnAlphabet)[1];
 }
 
 ///

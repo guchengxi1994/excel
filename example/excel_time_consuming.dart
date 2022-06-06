@@ -1,12 +1,16 @@
+// ignore_for_file: avoid_print
+
 import 'dart:io';
-import 'package:path/path.dart';
+
 import 'package:excel/excel.dart';
+// ignore: depend_on_referenced_packages
+import 'package:path/path.dart';
 
 void main(List<String> args) {
-  Stopwatch stopwatch = new Stopwatch()..start();
+  final Stopwatch stopwatch = Stopwatch()..start();
 
-  Excel excel = Excel.createExcel();
-  Sheet sh = excel['Sheet1'];
+  final Excel excel = Excel.createExcel();
+  final Sheet sh = excel['Sheet1'];
   for (int i = 0; i < 8; i++) {
     sh.cell(CellIndex.indexByColumnRow(rowIndex: 0, columnIndex: i)).value =
         'Col $i';
@@ -21,7 +25,7 @@ void main(List<String> args) {
   }
   print('Generating executed in ${stopwatch.elapsed}');
   stopwatch.reset();
-  var fileBytes = excel.encode();
+  final fileBytes = excel.encode();
 
   print('Encoding executed in ${stopwatch.elapsed}');
   stopwatch.reset();
